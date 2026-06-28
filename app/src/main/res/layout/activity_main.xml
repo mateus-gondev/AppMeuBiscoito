@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="24dp"
+    android:background="#1A1A2E">
+
+    <!-- Cabeçalho com botão Admin -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/tvBoasVindas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Olá, Humano 👋"
+            android:textColor="#E0E0E0"
+            android:textSize="22sp"
+            android:layout_centerVertical="true"/>
+
+        <Button
+            android:id="@+id/btnAdmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Admin"
+            android:textSize="12sp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:backgroundTint="#E74C3C"
+            android:paddingHorizontal="12dp"/>
+    </RelativeLayout>
+
+    <!-- Biscoito (ImageView clicável) -->
+
+    <TextView
+        android:layout_width="254dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="32dp"
+        android:text="Clique no biscoito para revelar sua sorte"
+        android:textColor="#9E9E9E"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/ivBiscoito"
+        android:layout_width="177dp"
+        android:layout_height="169dp"
+        android:layout_marginBottom="32dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:contentDescription="Biscoito da sorte"
+        android:focusable="true"
+        android:rotation="100"
+        android:src="@drawable/biscoito1" />
+
+    <!-- Card do resultado -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardResultado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:cardCornerRadius="12dp"
+        app:cardBackgroundColor="#2D2D44"
+        android:layout_marginBottom="16dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <TextView
+            android:id="@+id/tvFrase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:textColor="#F0E6FF"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:fontFamily="serif"
+            android:lineSpacingMultiplier="1.4"/>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Botão recarregar -->
+    <Button
+        android:id="@+id/btnRecarregar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="↺  Nova frase"
+        android:visibility="gone"
+        android:backgroundTint="#6C63FF"
+        android:textColor="#FFFFFF"/>
+
+</LinearLayout>
