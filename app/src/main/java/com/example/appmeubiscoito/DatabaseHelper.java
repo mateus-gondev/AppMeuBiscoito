@@ -9,18 +9,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+// Aqui o SQLiteOpenHelper transforma essa classe num gerenciador de banco de dados
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    // Criando nossa constante
     private static final String DB_NAME    = "biscoito.db";
     private static final int    DB_VERSION = 1;
     private static final String TABLE      = "frases";
     private static final String COL_ID     = "id";
     private static final String COL_TEXTO  = "texto";
 
+    // Construtor. Ele é chamado no Main Activity
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
+    // O método para criar o banco
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE + " ("
@@ -35,6 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "O esforço de hoje é o sucesso de amanhã.",
                 "Confie no seu caminho."
         };
+        // For para preencher o banco com as frases
         for (String f : iniciais) {
             ContentValues cv = new ContentValues();
             cv.put(COL_TEXTO, f);
@@ -42,18 +47,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    // O método onUpgrade. Apenas utilizado para quando mudamos a versão do banco pro exemplo.
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE);
         onCreate(db);
     }
 
-    // Retorna uma frase aleatória
+    // Buscar frase aleatória
     public Frase getFraseAleatoria() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(
                 "SELECT * FROM " + TABLE + " ORDER BY RANDOM() LIMIT 1", null);
         Frase frase = null;
+
+        // Aqui utilizarremos o cursor, ele aponta para uma linha do resultado e você navega por ele
         if (cursor.moveToFirst()) {
             frase = new Frase(
                     cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID)),
@@ -81,15 +89,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Inserir nova frase
     public boolean inserir(String texto) {
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase(); // Abre o banco para escrita
         ContentValues cv = new ContentValues();
-        cv.put(COL_TEXTO, texto);
+        cv.put(COL_TEXTO, texto); // Aqui eu passo a chave e o valor (Coluna texto - valor frase)
         return db.insert(TABLE, null, cv) != -1;
     }
 
     // Editar frase existente
     public boolean editar(int id, String novoTexto) {
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase(); // Abre o banco para escrita
         ContentValues cv = new ContentValues();
         cv.put(COL_TEXTO, novoTexto);
         return db.update(TABLE, cv, COL_ID + "=?",

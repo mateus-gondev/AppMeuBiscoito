@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppMeuBiscoito">
 
+        <!-- Registrando nosso MainActivity - Tela principal -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -22,6 +23,7 @@
             </intent-filter>
         </activity>
 
+        <!--Registrando nossa segunda tela, Adm-->
         <activity
             android:name=".AdminActivity"
             android:label="Admin — Frases"

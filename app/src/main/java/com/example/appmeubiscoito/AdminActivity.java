@@ -10,7 +10,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.List;
 
 public class AdminActivity extends AppCompatActivity {
-
+    // Declaração das Variáveis
     DatabaseHelper db;
     TextInputEditText etFrase;
     RecyclerView recycler;
